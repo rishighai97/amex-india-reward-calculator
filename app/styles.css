@@ -1,0 +1,35 @@
+body {
+  background: #f5f7fa;
+  font-family: "Helvetica Neue", Arial;
+}
+
+.navbar {
+  border-bottom: 2px solid #0070c9;
+}
+
+.amex-card img {
+  max-width: 280px;
+}
+
+.stat-card {
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.stat-card h3 {
+  font-weight: bold;
+}
+
+.highlight {
+  background: #0070c9;
+  color: white;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+#breakdown {
+  line-height: 1.8;
+}

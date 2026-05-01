@@ -1,0 +1,26 @@
+scp -i /Users/rishighai/Desktop/ssh/amex-india-reward-calculator/ssh-key-2026-05-01.key /Users/rishighai/Desktop/amex-india-reward-calculator/app/* [username]@[vm_ip]:[remote_path]
+
+
+scp -i /Users/rishighai/Desktop/ssh/amex-india-reward-calculator/ssh-key-2026-05-01.key /Users/rishighai/Desktop/amex-india-reward-calculator/app/* ocp@ubuntu:/app
+
+
+
+
+ssh -i /Users/rishighai/Desktop/ssh/amex-india-reward-calculator/ssh-key-2026-05-01.key opc@92.4.65.164
+
+
+
+scp -i /Users/rishighai/Desktop/ssh/amex-india-reward-calculator/ssh-key-2026-05-01.key  -r /Users/rishighai/Desktop/amex-india-reward-calculator/app opc@92.4.65.164:/app
+
+
+
+steps:
+create vm
+create vcn
+create subnet (192.168.0.0/16)
+add internet gateway in vcn
+connect route table to internet gateway via route rule of route table
+open ingress rule on subnet security list to destination port 8080 port (app port)
+ssh to host and open firewall for 8080 port (app port)
+sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
+sudo firewall-cmd --reload

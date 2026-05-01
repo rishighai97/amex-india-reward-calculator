@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>American Express India Reward Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
+  <span class="navbar-brand fw-bold text-primary">AMERICAN EXPRESS</span>
+
+  <div class="ms-auto d-flex align-items-center gap-3">
+    <span class="fw-semibold">India Reward Calculator</span>
+
+    <select id="cardSelect" class="form-select">
+      <option>Platinum Travel Card</option>
+    </select>
+  </div>
+</nav>
+
+<div class="container mt-4">
+
+  <!-- Card -->
+  <div class="card amex-card text-center mb-4">
+    <img src="images/amex-platinum-travel.png" class="card-img-top mx-auto">
+    <h5>Platinum Travel Card</h5>
+  </div>
+
+  <!-- Spend Slider -->
+  <div class="card p-4 mb-4">
+    <label class="fw-semibold">Total Spend: ₹ <span id="spendValue">0</span></label>
+    <input type="range" class="form-range" min="0" max="800000" step="10000" id="totalSpend">
+  </div>
+
+  <!-- Inputs -->
+  <div class="card p-4 mb-4">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label>Shopwise Spend (₹)</label>
+        <input type="number" id="shopwiseSpend" class="form-control">
+      </div>
+
+      <div class="col-md-4">
+        <label>MR Value (₹)</label>
+        <input type="number" id="mrValue" class="form-control" placeholder="0.7">
+      </div>
+
+      <div class="col-md-4">
+        <label>Additional MR</label>
+        <input type="number" id="additionalMR" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <!-- Output Cards -->
+  <div class="row g-3">
+
+    <div class="col-md-4">
+      <div class="card stat-card">
+        <h6>Total MR</h6>
+        <h3 id="totalMR">0</h3>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card stat-card">
+        <h6>MR Value</h6>
+        <h3 id="mrValueRs">₹0</h3>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card stat-card highlight">
+        <h6>Total Savings</h6>
+        <h3 id="totalSavings">₹0</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Breakdown -->
+  <div class="card p-4 mt-4">
+    <h5>Breakdown</h5>
+    <div id="breakdown"></div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
