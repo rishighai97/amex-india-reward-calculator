@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set directory where your HTML file is located
-#DIR=""
+#DIR="/app/app"
 
 # Set port
 PORT=8080

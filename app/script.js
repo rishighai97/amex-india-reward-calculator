@@ -105,21 +105,59 @@ function calculate() {
   document.getElementById("mrValueRs").innerText = "₹" + r.mrValueRs.toFixed(0);
   document.getElementById("totalSavings").innerText = "₹" + r.totalSavings.toFixed(0);
 
-  document.getElementById("breakdown").innerHTML = `
-    <b>Total Spend:</b> ₹${totalSpend.toLocaleString()}<br>
-    <b>Base MR:</b> ${r.baseMR}<br>
-    <b>Accelerated MR:</b> ${r.accelMR}<br>
-    <b>Milestone MR:</b> ${r.milestone.totalMR}<br>
-    <b>Milestones Hit:</b> ${r.milestone.breakdown.join(", ") || "None"}<br>
-    <b>Additional MR:</b> ${additionalMR}<br>
-    <b>Vouchers:</b> ${r.vouchers.join(", ") || "None"}<br>
-    <b>Yearly Fees:</b> ₹${r.yearlyFee}
+  const savingsPercentage = totalSpend > 0 ? ((r.totalSavings / totalSpend) * 100).toFixed(1) : "0";
+  document.getElementById("savingsPercentage").innerText = `${savingsPercentage}%`;
+
+  // Reward Breakdown Cards
+  document.getElementById("baseMRCard").innerText = r.baseMR.toLocaleString();
+  document.getElementById("accelMRCard").innerText = r.accelMR.toLocaleString();
+  document.getElementById("additionalMRCard").innerText = additionalMR.toLocaleString();
+  document.getElementById("milestoneMRCard").innerText = r.milestone.totalMR.toLocaleString();
+  document.getElementById("vouchersCard").innerText = "₹" + r.milestone.totalVoucherValue.toLocaleString();
+
+  // Earnings Breakdown
+  document.getElementById("earningsBreakdown").innerHTML = `
+    <div><b>(MR ₹ Value) + Vouchers - Yearly Fees</b></div>
+    <div>(₹${r.mrValueRs.toFixed(0)}) + ₹${r.milestone.totalVoucherValue} - ₹${r.yearlyFee} = <b>₹${r.totalSavings.toFixed(0)}</b></div>
   `;
+
+  // Milestones Hit
+  let milestonesContent = '';
+  if (r.milestone.breakdown.length > 0) {
+    milestonesContent += r.milestone.breakdown.map(m => `<div>✓ ${m}</div>`).join('');
+  }
+  if (r.vouchers.length > 0) {
+    milestonesContent += r.vouchers.map(v => `<div>✓ Voucher: ${v}</div>`).join('');
+  }
+  if (milestonesContent === '') {
+    milestonesContent = '<div>No milestones hit</div>';
+  }
+  document.getElementById("milestonesHit").innerHTML = milestonesContent;
 }
 
-// Event listeners for real-time updates
-document.querySelectorAll("input").forEach(el => {
-  el.addEventListener("input", calculate);
+// Sync shopwise slider max value with total spend
+const totalSpendSlider = document.getElementById("totalSpend");
+const shopwiseSlider = document.getElementById("shopwiseSpend");
+
+totalSpendSlider.addEventListener("input", () => {
+  const totalSpend = parseFloat(totalSpendSlider.value) || 0;
+  shopwiseSlider.max = totalSpend;
+
+  // Cap shopwise spend if it exceeds new max
+  if (parseFloat(shopwiseSlider.value) > totalSpend) {
+    shopwiseSlider.value = totalSpend;
+  }
+
+  calculate();
 });
+
+shopwiseSlider.addEventListener("input", () => {
+  const shopwiseSpend = parseFloat(shopwiseSlider.value) || 0;
+  document.getElementById("shopwiseValue").innerText = shopwiseSpend.toLocaleString();
+  calculate();
+});
+
+document.getElementById("mrValue").addEventListener("input", calculate);
+document.getElementById("additionalMR").addEventListener("input", calculate);
 
 calculate();
