@@ -15,11 +15,26 @@ body {
   padding: 20px;
   text-align: center;
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100px;
+}
+
+.stat-card h6 {
+  font-size: 13px;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+  word-wrap: break-word;
 }
 
 .stat-card h3 {
   font-weight: bold;
   margin: 0;
+  font-size: 28px;
+  line-height: 1.1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .highlight {
@@ -31,23 +46,14 @@ body {
   border-radius: 12px;
 }
 
+.col-md-3 {
+  flex: 0 0 25% !important;
+  max-width: 25% !important;
+}
+
 .col-md-2-4 {
-  flex: 0 0 20%;
-  max-width: 20%;
-}
-
-@media (max-width: 1200px) {
-  .col-md-2-4 {
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
-}
-
-@media (max-width: 768px) {
-  .col-md-2-4 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
+  flex: 0 0 20% !important;
+  max-width: 20% !important;
 }
 
 #earningsBreakdown,
@@ -55,4 +61,64 @@ body {
   line-height: 1.8;
   color: #333;
   font-size: 15px;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .stat-card h3 {
+    font-size: 22px;
+  }
+
+  .stat-card h6 {
+    font-size: 12px;
+  }
+
+  #earningsBreakdown,
+  #milestonesHit {
+    font-size: 13px;
+  }
+}
+
+/* Small tablet adjustments */
+@media (max-width: 768px) {
+  .stat-card {
+    min-height: 90px;
+    padding: 15px;
+  }
+
+  .stat-card h3 {
+    font-size: 19px;
+  }
+
+  .stat-card h6 {
+    font-size: 11px;
+    margin-bottom: 5px;
+  }
+
+  #earningsBreakdown,
+  #milestonesHit {
+    font-size: 12px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+  .stat-card {
+    min-height: 80px;
+    padding: 10px;
+  }
+
+  .stat-card h3 {
+    font-size: 16px;
+  }
+
+  .stat-card h6 {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+
+  #earningsBreakdown,
+  #milestonesHit {
+    font-size: 11px;
+  }
 }
